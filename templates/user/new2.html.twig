@@ -1,0 +1,10 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tableForm %}
+
+
+    {{ include('user/_formnew2.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_user_index') }}">Retour</a>
+
+{% endblock %}

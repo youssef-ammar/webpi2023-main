@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <h1>Inscription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idinscri</th>
+                <td>{{ inscription.idinscri }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilite</th>
+                <td>{{ inscription.disponibilite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_inscription_index') }}">back to list</a>
+
+    <a href="{{ path('app_inscription_edit', {'idinscri': inscription.idinscri}) }}">edit</a>
+
+    {{ include('inscription/_delete_form.html.twig') }}
+{% endblock %}

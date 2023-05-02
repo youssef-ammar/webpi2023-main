@@ -1,0 +1,210 @@
+{% extends 'baseFront2.html.twig' %}
+
+{% block tableForm %}
+
+
+	<div class="clearfix"></div>
+	<div class="page-title">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+
+					<h2 class="ipt-title">
+						Nos derniers Evenements organisé par nous
+					</h2>
+					<span class="ipn-subtitle">Voir nos derniers Evenements</span>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ============================ Page Title End ================================== -->
+
+	<!-- ============================ Main Section Start ================================== -->
+	<section>
+		<div class="container">
+
+			<div class="row justify-content-center">
+				<div class="col-lg-7 col-md-9">
+					<div class="sec-heading">
+						<h2>Notre 3 meilleurs
+							<span class="theme-cl-2">Evenement</span>
+						</h2>
+						<p>Selon les nombres des participants
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="row"> {% for evenement in topEvenements %}
+										<div class="col-lg-3 col-md-3 col-sm-6">
+											<div class="achievement-wrap">
+												<div class="achievement-content">
+													<div class="ache-icon yellow">
+														<i class="ti-medall-alt"></i>
+													</div>
+													<h4>
+														<span class="cto">{{ evenement.nb_participants }}</span>
+													</h4>
+
+													<p>{{ evenement['0'].nomEv  }}</p>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+
+			</div>
+
+		</div>
+	</section>
+	<div class="container">
+
+
+		<br><br>
+		<div class="container">
+			<a href="{{ path('pdf') }}" style="color: red;">
+				<i class="fa fa-download mr-1"></i>Télécharger le catalogue de nos événements
+			</a>
+			<br><br>
+			<form id="search-form">
+				<div class="form-group">
+					<input type="text" class="form-control" id="search-input" name="search-input" placeholder="Recherche par Nom d'évenement">
+				</div>
+				<button type="submit" class="btn btn-primary">Rechercher</button>
+			</form>
+
+		</div>
+	</div>
+		<script>
+			$(document).ready(function () {
+consolelog('erreur lhne');
+$('#search-form').submit(function (event) {
+event.preventDefault();
+
+var formData = $(this).serialize();
+
+$.ajax({
+type: 'POST',
+url: '{{ path('search') }}',
+data: formData,
+dataType: 'html',
+success: function (response) {
+$('#results').html(response.html);
+}
+});
+});
+});
+		</script>
+		<div id="results" class="row">
+			{% for ev in evenements|reverse %}
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="blog-wrap-grid">
+						<div class="blog-thumb">
+							<a>
+								<img class="d-block img-fluid mb-1 mx-auto" src="{{ asset('/uploads/images/' ~ ev.image) }}" alt="" width="250" height="250">
+							</a>
+						</div>
+
+						<div class="blog-info">
+							<span class="post-date">{{ ev.getRegion }}
+								,
+								{{ ev.getEmplacement }}
+							</span>
+						</div>
+
+						<div class="blog-body">
+							<a class="nav-link collapsed" href="{{ path('detailleEv', {'id': ev.id}) }}">
+								<h4 class="bl-title">
+									"
+									{{ ev.getNomEv}}
+									"
+								</h4>
+							</a>
+						</div>
+
+						<div class="blog-cates">
+							<ul>
+								{% if ev.getIdType() is not null %}
+									<li>
+										<a href="#" class="blog-cates-list style-4">{{ ev.getIdType().domaine }}</a>
+									</li>
+								{% endif %}
+
+								<div class="mb-3 d-flex justify-content-end">
+									<a href="{{ path('participer', {'id': ev.id}) }}" class="btn btn-primary">
+										<i class="uil uil-plus me-1"></i>
+										participer
+									</a>
+								</div>
+							</ul>
+
+							</div>
+
+						</div>
+
+					</div>
+				{% endfor %}
+
+			</div>
+		</section>
+		<section>
+			<div class="container">
+
+				<div class="row justify-content-center">
+					<div class="col-lg-7 col-md-9">
+						<div class="sec-heading">
+							<h2>Statistique des evenements par notre
+								<span class="theme-cl-2">Domaine</span>
+							</h2>
+						</div>
+					</div>
+				</div>
+
+				{# <div class="row justify-content-center">
+									{% for evenement in evenementsParType %}
+										{% for evenement in evenementsParType %}
+											<div class="col-lg-3 col-md-4 col-sm-6">
+												<div class="small-category-2">
+				
+													<div class="small-category-2-thumb themes-light">
+				
+														<i class="ti-calander"></i>
+				
+													</div>
+													<div class="sc-2-detail">
+														<h5 class="sc-jb-title">
+															{{ evenement.domaine}}
+														</h5>
+														<span>{{ evenement.nb_evenements}}
+														</span>
+													</div>
+				
+												</div>
+											</div>
+										{% endfor %}
+									{% endfor %}
+				
+								</div> #}
+
+
+			</div>
+		</section>
+	{% endblock %}
+	{% block stylesheets %}
+		<link href="{{ asset('front_ev/css/plugins.css') }}" rel="stylesheet"/>
+		<link href="{{ asset('front_ev/css/styles.css') }}" rel="stylesheet"/>
+	{% endblock %}
+	{% block javascripts %}
+		<script src="{{ asset('front_ev/js/jquery.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/popper.min.js') }}"></script>
+		<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/select2.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/owl.carousel.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/ion.rangeSlider.min.js') }}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<script src="{{ asset('front_ev/js/counterup.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/materialize.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/metisMenu.min.js') }}"></script>
+		<script src="{{ asset('front_ev/js/custom.js') }}"></script>
+	{% endblock %}

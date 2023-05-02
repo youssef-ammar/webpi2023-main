@@ -1,0 +1,11 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tableForm %}
+
+
+    {{ include('user/_formedit.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_user_index') }}">Retour</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

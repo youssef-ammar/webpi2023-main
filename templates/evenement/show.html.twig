@@ -1,0 +1,107 @@
+{% extends 'baseFront2.html.twig' %}
+
+{% block tableForm %}
+	<div class="header header-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<nav id="navigation" class="navigation navigation-landscape">
+						<div class="nav-header">
+							<a class="nav-brand" href="#">
+								<img src="assets/img/logo.png" class="logo" alt=""/>
+							</a>
+							<div class="nav-toggle"></div>
+						</div>
+						<div class="nav-menus-wrapper">
+							<ul class="nav-menu">
+								<li>
+									<a href="{{ path('front') }}">Acceuil</a>
+									<a href="{{ path('liste') }}">Evenements</a>
+								</li>
+							</ul>
+							<ul class="nav-menu nav-menu-social align-to-right">
+
+
+								<li class="add-listing">
+									<a href="#" data-toggle="modal" data-target="#login">
+										<i class="ti-user mr-1"></i>
+										Sign in
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+
+	<div class="page-title">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<h2 class="ipt-title">Detaille d'evenement</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section>
+		<div class="container">
+			<div
+				class="row">
+
+				<!-- Blog Detail -->
+				<div class="col-lg-8 col-md-12 col-sm-12 col-12">
+					<div class="blog-details single-post-item format-standard">
+						<div class="post-details">
+
+							<div class="post-featured-img">
+								<a>
+									<img class="d-block img-fluid mb-1 mx-auto" style="max-width: 50%;" src="{{ asset('/uploads/images/' ~ evenement.image) }}" alt="">
+								</a>
+							</div>
+
+							<h2 class="post-title">{{ evenement.nomEv }}
+
+							</h2>
+							cette evenement sera le
+							{{ evenement.dateEv ? evenement.dateEv|date('Y-m-d') : '' }}
+							a
+							{{ evenement.heureEv }}H
+																																												au
+							{{ evenement.emplacement }}
+							,
+							{{ evenement.region }}
+							, dans le domaine de
+							{% if evenement.getIdType() is not null %}
+								{{ evenement.getIdType().domaine }}
+							{% endif %}
+						</p>
+					</div>
+				</div>
+
+
+			</div>
+
+			<div class="col-lg-2 col-md-3 col-sm-3 col-3">
+				<div class="single-widgets widget_tags">
+					<h4 class="title">QR Code</h4>
+					<img src="{{qrCodes['simple']}}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="{{ asset('front/js/jquery.min.js') }}"></script>
+<script src="{{ asset('front/js/popper.min.js') }}"></script>
+<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('front/js/select2.min.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('front/js/ion.rangeSlider.min.js') }}"></script>
+<script src="{{ asset('front/js/counterup.min.js') }}"></script>
+<script src="{{ asset('front/js/materialize.min.js') }}"></script>
+<script src="{{ asset('front/js/metisMenu.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('front/css/plugins.css') }}">
+<link rel="stylesheet" href="{{ asset('front/css/styles.css') }}">
+<script src="{{ asset('front/js/custom.js') }}"></script>{% endblock %}

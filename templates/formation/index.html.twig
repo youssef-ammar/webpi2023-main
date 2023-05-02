@@ -1,0 +1,188 @@
+{% extends 'baseBack.html.twig' %}
+
+
+
+{% block tableForm %}
+ <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input id='searchInput' type="text" name="query" placeholder='search...'  title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+<form method="get" action="{{ path('app_formation_search') }}">
+    <div class="form-group">
+        <input type="text" name="q" placeholder="Search articles" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+    <main id="main" class="main">
+        <section class="min-sec">
+            <div class="container">
+                <h1 class="text-center mb-4">Liste des formations</h1>
+       <div class="row">
+                    {% for formation in formations %}
+                     {% if loop.index > ((currentPage - 1) * limit) and loop.index <= (currentPage * limit) %}
+                        <div class="col-md-4 col-sm-6">
+                         <span>
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">{{ formation.titrefr }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><strong>Niveau :</strong> {{ formation.niveau }}</p>
+                                    <p class="card-text"><strong>Type :</strong> {{ formation.type }}</p>
+                                    <p class="card-text"><strong>Contenu :</strong> {{ formation.contenu }}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="{{ path('app_formation_show', {'idMat': formation.idMat}) }}" class="btn btn-primary">Voir plus</a>
+                                    <a href="{{ path('app_formation_edit', {'idMat': formation.idMat}) }}" class="btn btn-success">Modifier</a>
+                                    <a href="{{ path('app_formation_delete', {'idMat': formation.idMat }) }}" class="btn btn-danger">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                         {% endif %}
+                         </span>
+                    {% else %}
+                        <div class="alert alert-info">Il n'y a pas encore de formations.</div>
+                    {% endfor %}
+                </div>
+
+                {% if pagesCount > 1 %}
+                    <nav aria-label="Page navigation example" style="margin-top: 20px;">
+                        <ul class="pagination justify-content-center">
+                            {% if previousPage is not null %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('app_formation_index', {'page': previousPage}) }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for page in 1..pagesCount %}
+                                <li class="page-item{% if currentPage == page %} active{% endif %}">
+                                    <a class="page-link" href="{{ path('app_formation_index', {'page': page}) }}">{{ page }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if nextPage is not null %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('app_formation_index', {'page': nextPage}) }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+        </section>
+        <canvas id="myChart" style="width:50%;max-width:900px;margin-left:300px;"></canvas>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+    let confirmedContractsCount = 0;
+    let waitingContractsCount = 0;
+
+    {% for formation in formations %}
+        {% if formation.Niveau == "Debutant" %}
+            confirmedContractsCount++;
+        {% elseif formation.Niveau == "Moyen" %}
+            confirmedContractsCount++;
+        {% else %}
+            waitingContractsCount++;
+        {% endif %}
+    {% endfor %}
+
+    // Fonction pour générer des couleurs aléatoires
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 15)];
+        }
+        return color;
+    }
+
+    // Création des données pour le graphique
+    let chartData = {
+        labels: ["Debutant", "Moyen", "Expert"],
+        datasets: [{
+            data: [confirmedContractsCount, waitingContractsCount],
+            backgroundColor: ["#36A2EB", "#FF6384"],
+            borderWidth: 1,
+            borderColor: '#ddd',
+            hoverBorderColor: 'black'
+        }]
+    };
+
+    // Configuration des options du graphique
+    let chartOptions = {
+        title: {
+            display: true,
+            text: "Statistiques des formations envoyés",
+            fontSize: 18,
+            fontFamily: 'Arial',
+            fontColor: '#333'
+        },
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor: '#666',
+                    fontSize: 14,
+                    fontFamily: 'Arial'
+                },
+                gridLines: {
+                    color: "#eee",
+                    zeroLineColor: "#666",
+                    zeroLineWidth: 1,
+                    lineWidth: 1,
+                    borderDash: [2, 2]
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: '#666',
+                    fontSize: 14,
+                    fontFamily: 'Arial'
+                },
+                gridLines: {
+                    color: "transparent"
+                }
+            }]
+        }
+    };
+
+    // Création du graphique
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: chartOptions
+    });
+</script>
+<script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('td');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
+{% endblock %}

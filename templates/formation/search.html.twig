@@ -1,0 +1,47 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tableForm %}
+
+    {% if formations|length == 0 %}
+        <h2>No results found for "{{ query }}"</h2>
+    {% else %}
+        <h2>Search results for "{{ query }}"</h2>
+        <table class="table">
+        <tbody>
+        <form method="get" action="{{ path('search') }}">
+    <div class="form-group">
+        <input type="text" name="q" placeholder="Search formation" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+ <main id="main" class="main">
+        <section class="min-sec">
+            <div class="container">
+                <h1 class="text-center mb-4">Liste des formations</h1>
+       
+       {% for formation in formations %}
+           <div class="col-md-4 col-sm-6">
+               span>
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">{{ formation.titrefr }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><strong>Niveau :</strong> {{ formation.niveau }}</p>
+                                    <p class="card-text"><strong>Type :</strong> {{ formation.type }}</p>
+                                    <p class="card-text"><strong>Contenu :</strong> {{ formation.contenu }}</p>
+                                </div>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+   
+</form> 
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

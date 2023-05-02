@@ -1,0 +1,64 @@
+{% extends 'baseFront2.html.twig' %}
+
+{% block title %}Front index{% endblock %}
+
+{% block tableForm %}
+ 
+<main id="main" class="main">
+    <section class="min-sec">
+   
+        <div class="container">
+            <h1 class="text-center mb-4">Liste des formations</h1>
+             <!-- Form -->
+            <form class="d-flex align-items-center col-12 col-md-8 col-lg-3" >
+               <span class="position-absolute pl-3 search-icon">
+                <i class="fe fe-search"></i>
+              </span>
+<input type="search" id="myInput" class="form-control pl-6" placeholder="Search Formation" />
+          
+            </form>
+            <div class="row">
+           
+{#            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>#}
+{#              <script>#}
+{#$(document).ready(function(){#}
+{#  $("#myInput").on("keyup", function() {#}
+{#    var value = $(this).val().toLowerCase();#}
+{#    $("#myTable span").filter(function() {#}
+{#      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)#}
+{#    });#}
+{#  });#}
+{#});#}
+{#</script>#}
+                {% for formation in formations %}
+                <div class="col-md-4" col-sm-6"" id="myTable">
+                <span> 
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ formation.titrefr }}</h5>
+                        </div>
+                        <div class="card-body" >
+                            <p class="card-text"><strong>Niveau :</strong> {{ formation.niveau }}</p>
+                            <p class="card-text"><strong>Type :</strong> {{ formation.type }}</p>
+                            <p class="card-text"><strong>Contenu :</strong> {{ formation.contenu }}</p>
+                        </div>
+                        <div class="card-footer text-center">
+                             <a href="{{ path('app_freelancer_new') }}" class="btn btn-primary">Ajouter</a>
+                            <a href="{{ path('app_freelancer_show', {'idMat': formation.idMat}) }}" class="btn btn-primary">Voir plus</a>
+                            <a href="{{ path('app_freelancer_edit', {'idMat': formation.idMat}) }}" class="btn btn-success">Modifier</a>
+                            <a href="{{ path('app_freelancer_delete', {'idMat': formation.idMat }) }}" class="btn btn-danger">Supprimer</a>
+                          
+                            
+                        </div>
+                    </div>
+                </div>
+                </span>
+                {% else %}
+                <div class="alert alert-info">Il n'y a pas encore de formations.</div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

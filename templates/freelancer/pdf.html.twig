@@ -1,0 +1,83 @@
+<style>
+  .container {
+    margin-top: 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+  }
+
+  .card-title {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 50px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+
+  th {
+    font-weight: bold;
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #3e8e41;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card-body">
+        <h5 class="card-title">Formation Details</h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Formation Title</th>
+              <td>{{ formation.titrefr }}</td>
+            </tr>
+            <tr>
+              <th>Formation Type</th>
+              <td>{{ formation.type }}</td>
+            </tr>
+            <tr>
+              <th>Formation Contenu</th>
+              <td>{{ formation.contenu }}</td>
+            </tr>
+            <tr>
+              <th>Niveau</th>
+              <td>{{ formation.niveau }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="{{ path('app_freelancer_index') }}" class="btn btn-primary"><i class="fas fa-arrow-left mr-2"></i>Back to list</a>
+      </div>
+    </div>
+  </div>
+</div>

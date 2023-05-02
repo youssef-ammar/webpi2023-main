@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Catalogue d'evenement FREELANCI</title>
+		<style>
+			@page {
+				background: url({{ asset('uploads/images/background.jpg') }}) no-repeat;
+				background-size: cover;
+			}}
+
+			.row {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				grid-gap: 20px;
+			}
+
+			.card {
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+				transition: 0.3s;
+				border-radius: 5px;
+			}
+
+			.card:hover {
+				box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<h1 class="text-center">notre evenement Evenements</h1>
+			<div class="row">
+				{% for evenement in evenement |reverse %}
+					<div class="col-md-4 mb-4">
+						<div class="card h-100">
+							<img src="{{ asset('uploads/images/' ~ evenement.image) }}" alt="" style="width: 700px; height: 150px;">
+
+							<div class="card-body">
+								<div class="text-center">
+
+									<h3 class="card-title">
+										L'evenement	<em>"{{ evenement.getNomEv }}"</em>
+										</h3>
+										Cette événement aura lieu le
+										{{ evenement.getDateEv ? evenement.dateEv|date('Y-m-d') : '' }},
+										{{ evenement.getHeureEv }}H 
+																				Au {{ evenement.getEmplacement }},
+										{{ evenement.getRegion }}
+										<br>
+										<em>Soyez les bienvenus !!</em>
+									</div>
+
+
+								</ul>
+							</div>
+							<hr>
+							<br>
+
+
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>

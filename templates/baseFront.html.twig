@@ -1,0 +1,201 @@
+{% block head %}
+<html lang="zxx">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>
+		Freelanci
+	</title>
+
+	<!-- All Plugins Css -->
+	<link
+			href="front/css/plugins.css" rel="stylesheet"/>
+
+	<!-- Custom CSS -->
+	<link href="front/css/styles.css" rel="stylesheet"/>
+</head>
+
+<body class="blue-skin">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== --><div class="Loader"> </div>
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div
+		id="main-wrapper"> <!-- ============================================================== -->
+	<div class="header header-transparent dark-text">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<nav id="navigation" class="navigation navigation-landscape">
+						<div class="nav-header">
+							<a class="nav-brand" href="#">
+								<img src="assets/img/logo.png" class="logo" alt=""/>
+							</a>
+							<div class="nav-toggle"></div>
+						</div>
+						<div class="nav-menus-wrapper">
+							<ul class="nav-menu">
+								<li>
+									<a href="{{ path('liste') }}">Evenements</a>
+								</li><li>
+									<a href="{{ path('app_reclamation_index') }}">Reclamations</a>
+								</li>
+							</ul>
+
+							<ul class="nav-menu nav-menu-social align-to-right">
+
+
+								<li class="add-listing dark-bg">
+									<a href="#" data-toggle="modal" data-target="#login">
+										<i class="ti-user mr-1"></i>
+										Sign in
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+<!-- End Navigation -->
+<div class="clearfix"></div>
+<!-- ============================================================== -->
+<!-- Top header -->
+<!-- ============================================================== -->
+
+<!-- ============================ Hero Banner Start================================== -->
+<div class="hero-banner full jumbo-banner" style="background:#f4f9fd url(front/img/bg2.png);"> <div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-7 col-md-8">
+				<h1>
+					Trouvez
+					<span class="text-info">votre emploi</span>
+					& Assurez votre
+					objectif!
+				</h1>
+				<p class="lead">
+					Travailler autrement !
+				</p>
+
+			</div>
+
+			<div class="col-lg-5 col-md-4">
+				<img src="front/img/a-2.png" alt="latest property" class="img-fluid"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="min-sec">
+
+	<div class="container">
+
+		<div class="row justify-content-center">
+			<div class="col-lg-7 col-md-9">
+				<div class="sec-heading">
+					<h2>
+						Nos derniers evenements organigé
+					</h2>
+					<p>
+						Inscrire sur notre site et participer.
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+
+
+			<a href="{{ path('pdf') }}" style="color: red;">
+				<i class="fa fa-download mr-1"></i>Télécharger le catalogue de nos événements
+			</a>
+
+		</div>
+	</div>
+</body>
+</body>
+</html></section><!-- ============================ News Updates End ==================================== --><!-- ============================ Call To Action Start ================================== --><section class="call-to-act" style="background:#2944c1 url(front/img/landing-bg.png) no-repeat">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 col-md-8">
+				<div class="clt-caption text-center mb-4">
+					<h3 class="text-light">
+						Contacter nous !
+					</h3>
+					<p class="text-light">
+						nous sommes sur votre service .
+					</p>
+				</div>
+				<div class="inner-flexible-box subscribe-box">
+					<div class="input-group">
+						<input type="text" class="form-control large" placeholder="Enter votre mail "/>
+						<button class="btn btn-subscribe bg-dark" type="button">
+							<i class="fa fa-arrow-right"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div></section><!-- ============================ Call To Action End ================================== --><!-- =========================== Footer Start ========================================= --><div class="footer-bottom">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-12 col-md-12 text-center">
+				<p class="mb-0">© 2023 Freelanci. Designd By
+				</p>
+				<p>
+					Groupe Freelanci
+				</p>
+				All Rights Reserved
+				</p>
+			</div>
+		</div></div></body></html></div></body></html></footer><!-- =========================== Footer End ========================================= --><!-- Log In Modal --><div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" aria-hidden="true"><div class="modal-dialog modal-dialog-centered login-pop-form" role="document"><div class="modal-content" id="registermodal"><div class="modal-header"><h4>Sign In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button></div><div class="modal-body"><div class="login-form"><form><div class="form-group">
+							<label>User Name</label>
+							<input type="text" class="form-control" placeholder="Username"/></div><div class="form-group">
+							<label>Password</label>
+							<input type="password" class="form-control" placeholder="*******"/></div><div class="form-group">
+							<button type="submit" class="btn dark-2 btn-md full-width pop-login">
+								Login
+							</button></div></form></div><div class="form-group text-center"><span>Or Signin with</span></div><div class="social_logs mb-4"><ul class="shares_jobs text-center"><li>
+							<a href="#" class="share fb">
+								<i class="fa fa-facebook"></i>
+							</a></li><li>
+							<a href="#" class="share gp">
+								<i class="fa fa-google"></i>
+							</a></li><li>
+							<a href="#" class="share ln">
+								<i class="fa fa-linkedin"></i>
+							</a></li></ul></div></div><div class="modal-footer"><div class="mf-link"><i class="ti-user"></i>Haven't An Account?<a href="javascript:void(0)" class="theme-cl">Sign Up</a></div><div class="mf-forget"><a href="#"><i class="ti-help"></i>Forget Password</a></div></div></div></div></div><!-- End Modal --><!-- Upload Resume --><div class="modal fade" id="upload-resume" tabindex="-1" role="dialog" aria-labelledby="resumeupload" aria-hidden="true"><div class="modal-dialog modal-dialog-centered login-pop-form" role="document"><div class="modal-content" id="resumeupload"><div class="modal-header"><h4>Upload Resume</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button></div><div class="modal-body"><div class="login-form"><form><div class="form-row">
+							<div class="col-lg-6 col-md-12">
+								<div class="form-group">
+									<label>Full Name</label>
+									<input type="text" class="form-control" placeholder="Username"/>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-12">
+								<div class="form-group">
+									<label>E-Mail ID</label>
+									<input type="email" class="form-control" placeholder="ucicl@gmail.com"/>
+								</div>
+							</div></div><div class="form-group">
+							<label>Paste Your Resume</label>
+							<textarea class="form-control ht-150" placeholder="Copy & Paste Resume"></textarea></div><div class="form-group">
+							<label class="light">doc, docx,pdf,txt,png</label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="uploadResume"/>
+								<label class="custom-file-label" for="uploadResume">
+									<i class="ti-link mr-1"></i>Upload Resume
+								</label>
+							</div></div><div class="form-group">
+							<button type="submit" class="btn dark-2 btn-md full-width pop-login">
+								Upload Resume
+							</button></div></form></div></div></div></div></div><!-- Upload Resume --></body></html> </div><!-- ============================================================== --><!-- End Wrapper --><!-- ============================================================== --><!-- ============================================================== --><!-- All Jquery --><!-- ============================================================== --><script src="front/js/jquery.min.js"> </script> <script src="front/js/popper.min.js"></script> <script src="front/js/bootstrap.min.js"></script> <script src="front/js/select2.min.js"></script> <script src="front/js/owl.carousel.min.js"></script> <script src="front/js/ion.rangeSlider.min.js"></script> <script src="front/js/counterup.min.js"></script> <script src="front/js/materialize.min.js"></script> <script src="front/js/metisMenu.min.js"></script> <script src="front/js/custom.js"></script><!-- ============================================================== --><!-- This page plugins --><!-- ============================================================== --></body></html>

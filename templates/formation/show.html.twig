@@ -1,0 +1,43 @@
+{% extends 'baseBack.html.twig' %}
+
+
+
+{% block tableForm %}
+  <main id="main" class="main">
+    <section class="min-sec">
+        <div class="container">
+            <h1 class="text-center mb-4">Details des formations</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ formation.titrefr }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Niveau :</strong> {{ formation.niveau }}</p>
+                            <p class="card-text"><strong>Type :</strong> {{ formation.type }}</p>
+                            <p class="card-text"><strong>Contenu :</strong> {{ formation.contenu }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-end align-items-center mb-3">
+                        <a href="{{ path('app_formation_index') }}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left mr-2"></i>back to list
+                        </a>
+                        <a class="btn btn-success create-pdf-btn ml-3" href="{{ path('app_formation_pdf', {'idMat': formation.idMat}) }}">Download as pdf</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <style>
+      .create-pdf-btn {
+          background-color: #28a745;
+          color: #fff;
+      }
+  </style>
+
+{% endblock %}

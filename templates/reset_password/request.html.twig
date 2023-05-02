@@ -1,0 +1,25 @@
+{% extends 'auth-signup-cover.html.twig' %}
+
+{% block register %}
+    <div class="form-floating form-floating-custom mb-3">
+        <h2 class="active">Réinitialiser votre mot de passe</h2>
+        {% for flash_error in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+
+        {{ form_start(requestForm) }}
+        {{ form_row(requestForm.email) }}
+        <div>
+            <small>
+                Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                lien pour réinitialiser votre mot de passe.
+            </small>
+        </div>
+
+        <button class="signin">Envoyer un courriel de réinitialisation</button>
+        {{ form_end(requestForm) }}
+    </div>
+
+
+{% endblock %}

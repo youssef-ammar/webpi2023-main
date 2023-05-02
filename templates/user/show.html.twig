@@ -1,0 +1,69 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tableForm %}
+<div style=" justify-content: center; margin-left: 150px;">
+
+    <div class="card">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 20px; padding: 50px;">
+
+            <div class="card-body">
+                <center> <h1 class="card-title" >Profil utilisateurs</h1> </center>
+
+
+
+                <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                {% if "ROLE_CLIENT" in user.roles %}
+                <td>Client</td>
+                {% else %}
+                <td>Freelancer</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+
+            <tr>
+                <th>NumTel</th>
+                <td>{{ user.numTel }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.adresse }}</td>
+            </tr>
+        </tbody>
+    </table>
+                <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_index' ) }}'">Retour</button>
+
+                <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_edit',{'id':user.id} ) }}'">Modifier</button>
+                {{ include('user/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

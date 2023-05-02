@@ -1,0 +1,49 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="form_row_box">
+    <div class="form_row_box_body">
+        <div class="form-row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.prenom) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.nom) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.date_naissance) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.numTel) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.adresse) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    {{ form_row(form.password) }}
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <button type="submit" class="btn dark-3">Update profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

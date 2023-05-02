@@ -1,0 +1,11 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Edit Formation{% endblock %}
+
+{% block tableForm %}
+    <h1>Edit Formation</h1>
+
+    {{ include('formation/_form.html.twig', {'button_label': 'Modifier', 'button_class': 'btn btn-success' }) }}
+
+    
+{% endblock %}

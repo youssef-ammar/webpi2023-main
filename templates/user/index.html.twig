@@ -1,0 +1,100 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block tableForm %}
+<div style=" justify-content: center; margin-left: 150px;">
+
+    <div class="card">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 20px; padding: 50px;">
+
+            <div class="card-body">
+                <center> <h1 class="card-title" >Liste des utilisateurs</h1> </center>
+
+
+
+                <table class="table">
+        <thead>
+            <tr>
+
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Date_naissance</th>
+                <th>Adresse</th>
+                <th>actions</th>
+                <th>Block/Unblock</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_show', {'id': user.id}) }}'">Détails</button>
+                    <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_edit', {'id': user.id}) }}'">Modifier</button>
+
+                </td>
+                <td>
+                    {% if user.block=="unBlocked" %}
+                        <a href="{{ path('app_user_block',{'id':user.id}) }}"><img src="{{ asset('unlocked.png') }}" width="30" height="30"></a>
+                    {% else %}
+                        <a href="{{ path('app_user_unblock',{'id':user.id}) }}"><img src="{{ asset('lock.png') }}" width="30" height="30"></a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun utilisateur</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+                <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_new2' ) }}'">Créer un utilisateur</button>
+                <button class="btn btn-primary" onclick="window.location.href='{{ path('app_user_stats' ) }}'">Stats</button><!--BOUTON STAT-->
+                <div class="text-center">
+
+                    {{ knp_pagination_render(users) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    <!-- Create a div element for the map -->
+    <div id="mapid" style="height: 600px;"></div>
+    <!-- Include Leaflet JS -->
+    <!--BIBLIOTHEQUE javascript leaflet-->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var map = L.map('mapid').setView([34.0, 9.0], 7);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+                minZoom: 1,
+                maxZoom: 20
+            }).addTo(map);
+
+            var markers = {{ markers|json_encode()|raw }};
+            console.log(markers);
+            var userbyadress= {{ userbyadress|json_encode()|raw }};
+
+            for (var i = 0; i < markers.length; i++) {
+                var marker = L.marker([markers[i].lat, markers[i].lng]).addTo(map);
+                var popupContent = markers[i].popupContent;
+                var nbusers = userbyadress[popupContent] ?? 0;
+                popupContent += "<br>" + nbusers + " Users";
+                marker.bindPopup(popupContent);
+            }
+        });
+
+    </script>
+
+{% endblock %}

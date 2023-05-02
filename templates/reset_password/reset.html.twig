@@ -1,0 +1,13 @@
+{% extends 'auth-signup-cover.html.twig' %}
+
+{% block register %}
+    <div class="form-floating form-floating-custom mb-3">
+        <h2 class="active">Réinitialiser votre mot de passe</h2>
+        {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="signin">Réinitialiser</button>
+        {{ form_end(resetForm) }}
+    </div>
+
+
+{% endblock %}

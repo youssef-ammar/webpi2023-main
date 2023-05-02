@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reclamation{% endblock %}
+{% block body %}
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 col-md-7">
+<div class="card border-warning mb-3">
+<div class="card-header"><h4 class="text-center" > Votre Reclamation</h4> </div>
+<div class="card-body">
+<br><br>
+
+						<p class="card-text"><strong class="text-warning">  Reclamation N°</strong> {{ reclamation.idrec}}</p>
+						<p class="card-text"><strong class="text-warning"> Nom:</strong> {{ reclamation.nomuser }}</p>
+
+                        <p class="card-text"><strong class="text-warning"> Email:</strong> {{ reclamation.email }}</p>
+                        <p class="card-text"><strong class="text-warning"> Objet:</strong>  {{ reclamation.objet }}</p>
+                        <p class="card-text"><strong class="text-warning"> Description:</strong> {{ reclamation.description }}</p>
+                        <p class="card-text"><strong class="text-warning"> Etat:</strong> {{ reclamation.etatrec }}</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+<br><br>
+<br><br><strong class="text-warning">Votre reclamation sera affecter bientot, Merci pour votre fidèlité ,</strong>
+<br><strong class="text-warning">Pour plus information contacter service reclamation rimen.benothmen@esprit.tn</strong>
+{% endblock %}

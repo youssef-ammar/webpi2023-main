@@ -1,0 +1,139 @@
+{% extends 'baseBack.html.twig' %}
+
+
+
+{% block tableForm %}
+
+    <main id="main" class="main">
+
+
+
+        <div class="pagetitle">
+            <h1>Les Services</h1>
+            <nav>
+
+
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+
+                        {% for message in app.flashes('notice') %}
+                            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+
+                        {% for message in app.flashes('noticedelete') %}
+                            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">Listes des services</h5>
+                            <a href="{{ path('ajouterService') }}">
+                                <button type="button" style="float: right;padding: 10px;" class="btn btn-outline-info">Ajouter</button>
+
+                            </a>
+
+
+
+                            <!-- Default Table -->
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ServLib</th>
+                                    <th scope="col">ServDispo</th>
+                                    <th scope="col">ServImage</th>
+
+                                    <th scope="col">ServPrix</th>
+                                    <th scope="col">Categorie</th>
+                                    <th scope="col">QrCode</th>
+
+                                    <th scope="col">Modifier</th>
+                                    <th scope="col">Supprimer</th>
+                                    <th scope="col">Détails</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {% if listS | length == 0 %}
+
+                                            <p style="text-align: center">Aucun Service trouvé !</p>
+
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+
+
+
+                                {% for p in listS  %}
+                                    <tr>
+
+                                        <td>{{p.servlib}}</td>
+                                        <td>{{ p.servdispo }}</td>
+
+
+                                        <td><img  style="width: 75px; height: 55px; padding: 5px;" src="{{ asset('uploads/'~p.servimg) }}"/></td>
+                                        <td>{{p.servprix}}</td>
+                                        <td>{{p.catlib}}</td>
+                                        <td><img  style="width: 75px; height: 55px; padding: 5px;" src="{{ asset('uploads/'~p.qrcode) }}"/></td>
+
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ path('modifierService',{servid:p.servid}) }}">
+                                                <i  class="bi bi-pencil" style="color: #0a58ca;"></i></a></td>
+
+
+                                        <td>
+                                            <a href="javascript:void(0)" onclick="if(confirm('Voulez-vous vraiment la supprimer ?')){window.location='{{ path('suppressionService', {'servid': p.servid }) }}';}">
+
+                                                <i  class="bi bi-trash" style="color:red;"></i></a></td>
+                                        </a></td>
+                                        <td><a href="{{ path('detailServices',{servid:p.servid}) }}">
+                                                <i  class="bi bi-menu-app" style="color:gray"></i></a></td>
+                                        </a></td>
+
+
+                                    </tr>
+
+                                {% endfor %}
+
+
+                                </tbody>
+                            </table>
+{#                            {{ knp_pagination_render(listS, 'bootstrap_4_pagination.html.twig') }}#}
+
+                            <!-- End Default Table Example -->
+                            <a href="{{ path('exportExcel') }}">
+                                <button type="button" style="float: right;padding: 10px;" class="btn btn-outline-secondary">Exporter Excel</button>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

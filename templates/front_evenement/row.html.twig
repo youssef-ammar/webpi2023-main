@@ -1,0 +1,49 @@
+
+			{% for ev in evenements|reverse %}
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="blog-wrap-grid">
+						<div class="blog-thumb">
+							<a>
+								<img class="d-block img-fluid mb-1 mx-auto" src="{{ asset('/uploads/images/' ~ ev.image) }}" alt="" width="250" height="250">
+							</a>
+						</div>
+
+						<div class="blog-info">
+							<span class="post-date">{{ ev.getRegion }}
+								,
+								{{ ev.getEmplacement }}
+							</span>
+						</div>
+
+						<div class="blog-body">
+							<a class="nav-link collapsed" href="{{ path('detailleEv', {'id': ev.id}) }}">
+								<h4 class="bl-title">
+									"
+									{{ ev.getNomEv}}
+									"
+								</h4>
+							</a>
+						</div>
+
+						<div class="blog-cates">
+							<ul>
+								{% if ev.getIdType() is not null %}
+									<li>
+										<a href="#" class="blog-cates-list style-4">{{ ev.getIdType().domaine }}</a>
+									</li>
+								{% endif %}
+
+								<div class="mb-3 d-flex justify-content-end">
+									<a href="{{ path('participer', {'id': ev.id}) }}" class="btn btn-primary">
+										<i class="uil uil-plus me-1"></i>
+										participer
+									</a>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+				{% endfor %}

@@ -1,0 +1,43 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Reclamation{% endblock %}
+{% block body %}
+<div style="display:flex; align-items:center;justify-content:center">
+    <table class="table table-striped table-hover" >
+        <thead >
+            <tr>
+                <th>Id Reclamation</th>
+                <th>Nom utulistaeur</th>
+                <th>email</th>
+                 <th>objet</th>
+                <th>Description</th>
+                <th>etat</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+
+            <tr>
+                <td>{{ reclamation.idrec}}</td>
+                <td>{{ reclamation.nomuser }}</td>
+                <td>{{ reclamation.email }}</td>
+                <td> {{ reclamation.objet }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.etatrec }}</td>
+                <td>
+                    <a class="btn btn-outline-info text-dark" href="{{ path('app_reclamation_show', {'idreclam': reclamation.idreclam}) }}">Voir</a>
+                    <a class="btn btn-outline-info text-dark" href="{{ path('app_reclamation_edit', {'idreclam': reclamation.idreclam}) }}">Modefier </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun reclamation</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock %}

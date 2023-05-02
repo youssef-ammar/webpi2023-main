@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> {% block title %}
+            Freelanci {% endblock %}</title>
+
+
+    <!-- All Plugins Css -->
+    <link href="{{ asset('front/css/plugins.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('front/css/styles.css') }}" rel="stylesheet">
+</head>
+
+<body class="blue-skin">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="Loader"></div>
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+    <!-- Start Navigation -->
+    <div class="header header-transparent dark-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <nav id="navigation" class="navigation navigation-landscape">
+                        <div class="nav-header">
+                            <a class="nav-brand" href="#">
+                                <img src="{{ asset ('front/images/example.jpg') }}" class="logo" alt="" />
+
+                            </a>
+                            <div class="nav-toggle"></div>
+                        </div>
+                        <div class="nav-menus-wrapper">
+                            <ul class="nav-menu">
+
+
+                                </li>
+                                <li><a href="{{ path('front') }}">Home</a></li>
+                                <li><a href="{{ path('app_user_index') }}">dashboard</a></li>
+                                <li><a href="{{ path('liste') }}">Evenement</a></li>
+                                <li><a href="{{ path('app_freelancer') }}">Formation</a></li>
+
+                                {% if app.user %}
+                                <li><a href="{{ path('app_user_edit2',{'id':app.user.id}) }}">My profile</a></li>
+                                {% endif %}
+
+                            </ul>
+
+                            <ul class="nav-menu nav-menu-social align-to-right">
+
+                             <!-- begin Profile  -->                   
+{#                            <li class="active">  <span class="submenu-indicator"> bonjour   <strong>{{ app.user.nom }}</strong> !</span> </li>#}
+                        <!-- End Profile  -->
+
+                                {% if app.user %}
+                                    <form action="{{ path('app_logout') }}">
+                                        <div class="jb_grid_01_footer">
+                                            <button class="_jb_apply">SignOut</button>
+                                        </div>
+                                    </form>
+                                {% else %}
+                                    <form action="{{ path('app_login') }}">
+                                        <div class="jb_grid_01_footer">
+                                            <button class="_jb_apply">Signin</button>
+                                        </div>
+                                    </form>
+                                {% endif %}
+
+
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Navigation -->
+    <div class="clearfix"></div>
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+
+    <!-- ============================ Hero Banner  Start================================== -->
+    <!-- ============================ Hero Banner End ================================== -->
+
+    <!-- ============================ Newest Designs Start ==================================== -->
+    <section class="min-sec">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-9">
+                    <div class="sec-heading">
+                        {% block tableForm %}
+                            <h2>Top Featured <span class="theme-cl-2">Jobs</span></h2>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
+    <!-- ============================ Newest Designs End ==================================== -->
+
+    <!-- ============================ Category Section Start ==================================== -->
+    <!-- ============================ Category Section End ==================================== -->
+
+    <!-- ============================ Candidates Section Start ==================================== -->
+    <!-- ============================ Candidates Section End ==================================== -->
+
+    <!-- ============================ Featured Themes Start ==================================== -->
+    <!-- ============================ Featured Themes End ==================================== -->
+
+    <!-- ============================ News Updates Start ==================================== -->
+    <!-- ============================ News Updates End ==================================== -->
+
+    <!-- ============================ Call To Action Start ================================== -->
+    <!-- ============================ Call To Action End ================================== -->
+
+    <!-- =========================== Footer Start ========================================= -->
+    <footer class="dark-footer skin-dark-footer">
+        <div>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget">
+                            <img src="front/img/logo-light.png" class="img-fluid f-logo" width="120" alt="">
+                            <p>407-472 Rue Saint-Sulpice, Montreal<br>Quebec, H2Y 2V8</p>
+                            <ul class="footer-bottom-social">
+                                <li><a href="#"><i class="ti-facebook"></i></a></li>
+                                <li><a href="#"><i class="ti-twitter"></i></a></li>
+                                <li><a href="#"><i class="ti-instagram"></i></a></li>
+                                <li><a href="#"><i class="ti-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Useful links</h4>
+                            <ul class="footer-menu">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">FAQs Page</a></li>
+                                <li><a href="#">Checkout</a></li>
+                                <li><a href="#">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Developers</h4>
+                            <ul class="footer-menu">
+                                <li><a href="#">Booking</a></li>
+                                <li><a href="#">Stays</a></li>
+                                <li><a href="#">Adventures</a></li>
+                                <li><a href="#">Author Detail</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Useful links</h4>
+                            <ul class="footer-menu">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Jobs</a></li>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="#">Press</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4">
+                        <div class="footer-widget">
+                            <h4 class="widget-title">Useful links</h4>
+                            <ul class="footer-menu">
+                                <li><a href="#">Support</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy &amp; Terms</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <p class="mb-0">© 2021 Workoo. Designd By <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =========================== Footer End ========================================= -->
+
+    <!-- Log In Modal -->
+    <!-- End Modal -->
+
+    <!-- Upload Resume -->
+    <!-- Upload Resume -->
+
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="{{asset('front/js/jquery.min.js')}}"></script>
+<script src="{{asset('front/js/popper.min.js')}}"></script>
+<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('front/js/select2.min.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('front/js/ion.rangeSlider.min.js') }}"></script>
+<script src="{{ asset('front/js/counterup.min.js') }}"></script>
+<script src="{{ asset('front/js/materialize.min.js') }}"></script>
+<script src="{{ asset('front/js/metisMenu.min.js') }}"></script>
+<script src="{{ asset('front/js/custom.js') }}"></script>
+<!-- Flashy depends on jQuery -->
+
+<!-- Load Flashy default JavaScript -->
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<!-- Include Flashy default partial -->
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+
+
+</body>
+</html>
