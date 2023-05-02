@@ -127,10 +127,10 @@ class UserController extends AbstractController
             $encoded = $passwordencoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
             if($user->getRole()=="Client"){
-                $user->setRoles(["ROLE_CLIENT"]);
+                $user->setRoles("ROLE_CLIENT");
             }
             else{
-                $user->setRoles(["ROLE_FREELANCER"]);
+                $user->setRoles("ROLE_FREELANCER");
             }
             if ($existingUseremail !== null) {
                 $flashy->error('There is an existing account with this email');
@@ -203,10 +203,10 @@ class UserController extends AbstractController
             $encoded = $passwordencoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
             if($user->getRole()=="Client"){
-                $user->setRoles(["ROLE_CLIENT"]);
+                $user->setRoles("ROLE_CLIENT");
             }
             else{
-                $user->setRoles(["ROLE_FREELANCER"]);
+                $user->setRoles("ROLE_FREELANCER");
             }
             if ($existingUseremail !== null) {
                 $flashy->error('There is an existing account with this email');
@@ -248,10 +248,10 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserTypeEditUser::class, $user);
         $form->handleRequest($request);
-        if ($user->getRoles()==["ROLE_ADMIN"]){
+        if ($user->getRoles()=="ROLE_ADMIN"){
             $user->setRole('Admin');
         }
-        elseif ($user->getRoles()==["ROLE_CLIENT"]){
+        elseif ($user->getRoles()=="ROLE_CLIENT"){
             $user->setRole('Client');
         }
         else {
@@ -316,10 +316,10 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType2::class, $user);
         $form->handleRequest($request);
-        if ($user->getRoles()==["ROLE_ADMIN"]){
+        if ($user->getRoles()=="ROLE_ADMIN"){
             $user->setRole('Admin');
         }
-        elseif ($user->getRoles()==["ROLE_CLIENT"]){
+        elseif ($user->getRoles()=="ROLE_CLIENT"){
             $user->setRole('Client');
         }
         else {

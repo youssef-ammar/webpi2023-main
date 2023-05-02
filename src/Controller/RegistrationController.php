@@ -84,10 +84,10 @@ class RegistrationController extends AbstractController
                 )
             );
             if($user->getRole()=="Client"){
-                $user->setRoles(["ROLE_CLIENT"]);
+                $user->setRoles("ROLE_CLIENT");
             }
             else{
-                $user->setRoles(["ROLE_FREELANCER"]);
+                $user->setRoles("ROLE_FREELANCER");
             }
             if ($existingUseremail !== null) {
                 $flashyNotifier->error('There is an existing account with this email');
@@ -136,17 +136,17 @@ class RegistrationController extends AbstractController
         // Tranform this list in array
 
         // If is a admin we redirect to the backoffice area
-        if (in_array('ROLE_ADMIN', $roles, true)){
+        if ($roles=="ROLE_ADMIN"){
 
             return $this->redirectToRoute('app_user_index');
         }
-        else if (in_array('ROLE_CLIENT', $roles, true)){
+        else if ($roles=="ROLE_CLIENT"){
 
-            return $this->redirectToRoute('app_front2');
+            return $this->redirectToRoute('app_front');
         }
         else{
 
-            return $this->redirectToRoute('app_front2');
+            return $this->redirectToRoute('app_front');
         }
     }
 }
